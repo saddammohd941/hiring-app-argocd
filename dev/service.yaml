@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-service
+  name: hiring-app-nodeport
+  namespace: hiring-app-dev
 spec:
   type: NodePort
   ports:
@@ -9,4 +10,4 @@ spec:
       port: 9000
       targetPort: 8080
   selector:
-    app: myapp
+    app: hiring-app
