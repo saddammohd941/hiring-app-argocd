@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiring-app-nodeport
+  namespace: hiring-app-stage
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 32001
+      port: 9000
+      targetPort: 8080
+  selector:
+    app: hiring-app
