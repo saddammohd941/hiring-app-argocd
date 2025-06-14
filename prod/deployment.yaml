@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hiring-app
+  namespace: hiring-app-prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hiring-app
+  template:
+    metadata:
+      labels:
+        app: hiring-app
+    spec:
+      containers:
+      - name: hiring-app
+        image: saddammohd941/hiring-app:19
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "1.0"
+            memory: "1Gi"
+          requests:
+            cpu: "0.5"
+            memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hiring-app-service
+  namespace: hiring-app-prod
+spec:
+  selector:
+    app: hiring-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
