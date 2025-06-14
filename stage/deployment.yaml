@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: hiring-app
-        image: saddammohd941/hiring-app:${BUILD_NUMBER}
+        image: saddammohd941/hiring-app:30
         ports:
         - containerPort: 8080
         resources:
