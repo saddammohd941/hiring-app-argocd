@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hiring-app-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/saddammohd941/hiring-app-argocd.git
+    targetRevision: HEAD
+    path: prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hiring-app-prod
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
